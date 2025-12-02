@@ -40,8 +40,21 @@
   }
 }
 </script>
+<!-- Babel for browser-side JSX transformation -->
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<!-- Polyfill for process.env to allow API Key usage -->
+<script>
+  window.process = {
+    env: {
+      // __API_KEY__ will be replaced by the Netlify build command
+      API_KEY: "__API_KEY__"
+    }
+  };
+</script>
 </head>
   <body>
     <div id="root"></div>
+    <!-- Load the main entry file with Babel -->
+    <script type="text/babel" data-type="module" src="./index.tsx"></script>
   </body>
 </html>
